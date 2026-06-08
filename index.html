@@ -32,7 +32,7 @@
   --s1:#edeff2;--s2:#c2c5cc;--s3:#8a8d95;--s4:#54575f;
   --e1:#ff4500;--e2:#ff7a1a;--e3:#ffb02e;
   --cyan:#00e5ff;--cyan-dim:rgba(0,229,255,.55);
-  --text:#ececef;--dim:#9a9da5;--faint:#65686f;--text-dim:#b6b9c0;
+  --text:#ececef;--dim:#9a9da5;--faint:#7d808a;--text-dim:#b6b9c0;
   --line:rgba(255,255,255,.08);--line2:rgba(255,255,255,.13);--line-2:rgba(255,255,255,.13);
   --eg:rgba(255,90,20,.5);
   --fd:'Fraunces',Georgia,serif;--fs:'Archivo',-apple-system,sans-serif;
@@ -79,8 +79,8 @@ body::before{content:"";position:fixed;inset:0;z-index:1;pointer-events:none;
 #kf-mont img{object-position:center 46%;transform-origin:46% 60%}
 #kf-cam img{object-position:center 46%;transform-origin:52% 55%}
 .hero-scrim{position:absolute;inset:0;z-index:6;pointer-events:none;background:linear-gradient(180deg,rgba(9,9,9,.5) 0%,rgba(9,9,9,.1) 24%,transparent 46%,transparent 60%,rgba(9,9,9,.42) 82%,rgba(9,9,9,.86) 100%)}
-.pt{position:absolute;z-index:8;pointer-events:none;opacity:0;left:max(5vw,28px);bottom:12vh;max-width:min(820px,90vw)}
-.pt.center{left:0;right:0;text-align:center;bottom:14vh;max-width:none;padding:0 5vw}
+.pt{position:absolute;z-index:8;pointer-events:none;opacity:0;left:max(5vw,28px);bottom:12svh;max-width:min(820px,90vw)}
+.pt.center{left:0;right:0;text-align:center;bottom:14svh;max-width:none;padding:0 5vw}
 .pt.right{left:auto;right:max(5vw,28px);text-align:right}
 .kk{font-family:var(--fs);font-size:11px;font-weight:800;letter-spacing:.28em;text-transform:uppercase;display:block;margin-bottom:16px}
 .kk.cy{color:var(--cyan)}.kk.em{color:var(--e2)}
@@ -95,7 +95,7 @@ em.cy{color:var(--cyan);font-style:italic}em.em{color:var(--e2);font-style:itali
 #dots{position:absolute;right:3.2vw;top:50%;transform:translateY(-50%);z-index:9;display:flex;flex-direction:column;gap:10px}
 .dot{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.16);transition:background .4s,transform .4s}
 .dot.on{background:var(--e2);transform:scale(1.6)}
-#scue{position:absolute;bottom:5.5vh;left:50%;transform:translateX(-50%);z-index:9;display:flex;align-items:center;gap:12px;transition:opacity .6s}
+#scue{position:absolute;bottom:5.5svh;left:50%;transform:translateX(-50%);z-index:9;display:flex;align-items:center;gap:12px;transition:opacity .6s}
 #scue.gone{opacity:0}
 #scue span{font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.3)}
 .sbar{width:38px;height:1px;background:rgba(255,255,255,.12);overflow:hidden;position:relative}
@@ -461,7 +461,9 @@ section.sec,section.manifesto,section.pos,section.evo,section.cw,section.pclose,
 
 /* ── BOTÃO CHAMA (formato de chama; preenche no hover; acende no clique) ── */
 .flame-btn{background:none;border:none;outline:none;-webkit-tap-highlight-color:transparent;cursor:pointer;display:inline-flex;flex-direction:column;align-items:center;gap:16px;margin-top:54px;padding:8px;transition:transform .4s cubic-bezier(.2,.7,.2,1)}
-.flame-btn:focus,.flame-btn:focus-visible,.flame-btn:active{outline:0!important;box-shadow:none!important;border:none!important}
+.flame-btn:focus-visible{outline:none}
+.flame-btn:focus-visible .flame-label{text-decoration:underline;text-underline-offset:4px;color:var(--e3)}
+.flame-btn:focus-visible .flame-outer{filter:drop-shadow(0 0 10px var(--eg))}
 .flame-btn:hover{transform:translateY(-4px)}
 .flame-svg{width:78px;height:100px;display:block;overflow:visible}
 .flame-outer{fill:rgba(255,122,26,.06);stroke:var(--e2);stroke-width:2.4;transition:fill .55s ease,stroke .55s ease,filter .55s ease}
@@ -594,6 +596,16 @@ section.sec,section.manifesto,section.pos,section.evo,section.cw,section.pclose,
 }
 
 </style>
+<noscript><style>
+  /* AUDITORIA F2 — fallback sem JavaScript: não prender o usuário na tela de
+     intro (navegador corporativo travado). Libera o scroll e o conteúdo da
+     proposta; oculta o hero scrollytelling (que depende de JS). */
+  #intro,#darkrise{display:none!important}
+  #track{display:none!important}
+  html,body{overflow:auto!important}
+  .rv{opacity:1!important;transform:none!important;filter:none!important}
+  .n2 h2.rv .n2hl{transform:none!important}
+</style></noscript>
 </head>
 <body>
 <div id="pbar"></div>
@@ -700,7 +712,7 @@ section.sec,section.manifesto,section.pos,section.evo,section.cw,section.pclose,
         <div class="comp-tier"><span class="comp-range">R$ 2.500–5.000</span><span class="comp-names">MoviNox, Caixa de Fogo, Grill Land</span><span class="comp-label">Inox de nicho · baixo volume</span></div>
         <div class="comp-tier tier-vision"><span class="comp-range">R$ 590–990</span><span class="comp-names"><strong>Vision Inox ✦</strong> — a Portátil herói</span><span class="comp-label">Premium acessível · espaço vazio →</span></div>
         <div class="comp-tier"><span class="comp-range">R$ 100–400</span><span class="comp-names">Tramontina, Mor, genéricos de marketplace</span><span class="comp-label">Esmaltado · enferruja no litoral</span></div>
-        <p style="font-size:13px;color:#65686f;margin-top:18px;max-width:62ch;line-height:1.6;font-family:var(--fs)">A linha pode subir até a faixa premium alta — parrilla, kits gourmet — conforme a marca ganha tração. Mas a entrada é pela Portátil, no espaço acessível que ninguém ocupa hoje.</p>
+        <p style="font-size:13px;color:#7d808a;margin-top:18px;max-width:62ch;line-height:1.6;font-family:var(--fs)">A linha pode subir até a faixa premium alta — parrilla, kits gourmet — conforme a marca ganha tração. Mas a entrada é pela Portátil, no espaço acessível que ninguém ocupa hoje.</p>
       </div>
     </div>
   </div>
@@ -778,7 +790,7 @@ section.sec,section.manifesto,section.pos,section.evo,section.cw,section.pclose,
   --s1:#edeff2;--s2:#c2c5cc;--s3:#8a8d95;
   --e1:#ff4500;--e2:#ff7a1a;--e3:#ffb02e;--eg:rgba(255,90,20,.5);
   --cyan:#00e5ff;--cyan-dim:rgba(0,229,255,.55);
-  --text:#ececef;--dim:#9a9da5;--faint:#65686f;
+  --text:#ececef;--dim:#9a9da5;--faint:#7d808a;
   --line:rgba(255,255,255,.08);--line2:rgba(255,255,255,.13);
   --fd:'Fraunces',Georgia,serif;--fs:'Archivo',-apple-system,sans-serif;
   --maxw:1180px;
@@ -910,7 +922,7 @@ section.sec,section.manifesto,section.pos,section.evo,section.cw,section.pclose,
         <div class="evo-frame" data-ph="Referência_mestre_5.png">
           <img loading="lazy" decoding="async" src="assets/ref_5.png" alt="Vision Inox — direção de design premium">
         </div>
-        <p class="evo-cap"><strong>Logo vazada como ventilação</strong>, acabamento escovado uniforme, pernas em V — feito para o litoral.</p>
+        <p class="evo-cap"><strong>Logo vazada como ventilação</strong>, acabamento escovado uniforme, pernas em X — feito para o litoral.</p>
       </div>
     </div>
 
@@ -1064,7 +1076,7 @@ section.sec,section.manifesto,section.pos,section.evo,section.cw,section.pclose,
   --s1:#edeff2;--s2:#c2c5cc;--s3:#8a8d95;--s4:#54575f;
   --e1:#ff4500;--e2:#ff7a1a;--e3:#ffb02e;--eg:rgba(255,90,20,.5);
   --cyan:#00e5ff;--cyan-dim:rgba(0,229,255,.55);
-  --text:#ececef;--dim:#9a9da5;--faint:#65686f;
+  --text:#ececef;--dim:#9a9da5;--faint:#7d808a;
   --line:rgba(255,255,255,.08);--line2:rgba(255,255,255,.13);
   --fd:'Fraunces',Georgia,serif;--fs:'Archivo',-apple-system,sans-serif;
   --maxw:1180px;
@@ -1621,6 +1633,9 @@ function initHeroVideo(){
   if(!heroVid)return;
   heroVid.addEventListener('loadedmetadata',function(){vdur=heroVid.duration||5;onScroll();});
   heroVid.addEventListener('loadeddata',function(){var pr=heroVid.play();if(pr&&pr.then){pr.then(function(){heroVid.pause();heroVid.currentTime=0;onScroll();}).catch(function(){try{heroVid.currentTime=0}catch(e){}onScroll();});}else{try{heroVid.pause();heroVid.currentTime=0}catch(e){}onScroll();}});
+  // AUDITORIA F2 — swap mobile + load() DEPOIS de anexar os listeners, para
+  // loadedmetadata/loadeddata nunca dispararem antes deles (evita vdur=0).
+  if(window.innerWidth<760){var sm=document.getElementById('heroSrcMp4');if(sm)sm.setAttribute('src','assets/hero-wan-mobile.mp4');heroVid.load();}
 }
 function setSound(on){
   sndOn=on; if(sndBtn){sndBtn.classList.toggle('on',on);}
@@ -1818,14 +1833,8 @@ if('scrollRestoration' in history)history.scrollRestoration='manual';
 })();
 
 /* ═══ VIDEO MOBILE SWAP ═══ */
-(function(){
-  if(window.innerWidth<760){
-    var sm=document.getElementById('heroSrcMp4');
-    if(sm)sm.setAttribute('src','assets/hero-wan-mobile.mp4');
-    var v=document.getElementById('heroVid');
-    if(v)v.load();
-  }
-})();
+/* AUDITORIA F2 — movido para dentro de initHeroVideo (após os listeners) para
+   eliminar a corrida que podia zerar vdur. Ver initHeroVideo() acima. */
 (function(){
   var door=document.getElementById('ember-door');
   if(!door)return;
