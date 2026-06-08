@@ -288,6 +288,37 @@ footer p{font-size:12px;color:var(--faint);letter-spacing:.04em}
 .rv[data-rv="slide-l"].in{transform:none}
 .rv[data-rv="slide-r"]{transform:translateX(46px)}
 .rv[data-rv="slide-r"].in{transform:none}
+
+/* ═══════════ MOTION SCROLL-DRIVEN ═══════════
+   Substitui o reveal "triggered" (fade-in ao entrar = linguagem de landing genérica)
+   por scrubbing real ancorado ao scroll — mesma língua do hero. Você rola, ele revela
+   na sua mão; você para, ele para no meio. Fallback: sem suporte, o IO/JS revela normal. */
+@supports(animation-timeline:view()){
+  .rv{opacity:0;transform:none;filter:none;transition:none;animation:cineRise linear both;animation-timeline:view();animation-range:entry 3% entry 40%}
+  .rv.d1,.rv.d2,.rv.d3,.rv.d4,.rv.d5{transition-delay:0s}
+  @keyframes cineRise{0%{opacity:0;transform:translateY(58px) scale(.97);filter:blur(7px)}55%{filter:blur(0)}100%{opacity:1;transform:none;filter:none}}
+
+  /* headlines de seção (depth): mais peso, range um pouco mais longo */
+  .rv[data-rv="depth"]{animation-range:entry 2% entry 36%}
+  /* manifesto / posicionamento (mask): revelação lenta e cinematográfica */
+  .rv[data-rv="mask"]{animation-range:entry 1% entry 52%}
+  .rv[data-rv="slide-l"],.rv[data-rv="slide-r"]{animation:cineSlide linear both;animation-timeline:view();animation-range:entry 4% entry 42%}
+  @keyframes cineSlide{0%{opacity:0;transform:translateX(var(--sx,46px))}100%{opacity:1;transform:none}}
+  .rv[data-rv="slide-l"]{--sx:-46px}
+
+  /* headline N2 — CORTINA ancorada ao scroll: o texto sobe de dentro do bloco */
+  .n2 h2.rv{opacity:1;transform:none;animation:none;overflow:hidden}
+  .n2 h2.rv .n2hl{display:block;transform:none;animation:cineCurtain linear both;animation-timeline:view();animation-range:entry 1% entry 28%}
+  @keyframes cineCurtain{0%{transform:translateY(114%)}100%{transform:none}}
+  .n2 .rv{transform:none;animation:cineRise linear both;animation-timeline:view();animation-range:entry 4% entry 40%}
+
+  /* CASCATA real (deslocamento no scroll, não delay de tempo) */
+  .stats .stat,.diff-row,.scen-card,.ecard,.ue,.pcard,.evo-card,.cw-phase{animation:cineRise linear both;animation-timeline:view()}
+  .stats .stat:nth-child(1),.scen-card:nth-child(1),.ecard:nth-child(1){animation-range:entry 6% entry 38%}
+  .stats .stat:nth-child(2),.scen-card:nth-child(2),.ecard:nth-child(2){animation-range:entry 11% entry 44%}
+  .stats .stat:nth-child(3),.scen-card:nth-child(3),.ecard:nth-child(3){animation-range:entry 16% entry 50%}
+  .stats .stat:nth-child(n+4),.scen-card:nth-child(n+4),.ecard:nth-child(n+4){animation-range:entry 21% entry 56%}
+}
 /* N2 — tratamento cinematografico-agressivo (cortina + cascata + parallax), escopado em .n2 */
 .n2 .rv{transform:translateY(46px);transition:opacity 1.15s cubic-bezier(.2,.7,.2,1),transform 1.15s cubic-bezier(.2,.7,.2,1)}
 .n2 .rv.in{transform:none}
@@ -430,7 +461,7 @@ section.sec,section.manifesto,section.pos,section.evo,section.cw,section.pclose,
   <div class="kf" id="kf-denc"><div class="media"><picture><source media="(max-width:760px)" srcset="assets/det_encaixe-mobile.png"><img src="assets/det_encaixe.png" alt="Encaixe a laser"></picture></div></div>
   <div class="kf" id="kf-dgre"><div class="media"><picture><source media="(max-width:760px)" srcset="assets/det_grelha-mobile.png"><img src="assets/det_grelha.png" alt="Grelha em inox 304"></picture></div></div>
   <div class="kf" id="kf-inox"><div class="media"><picture><source media="(max-width:760px)" srcset="assets/inox_hero-mobile.png"><img src="assets/inox_hero.png" alt="Vision Inox — produto em inox 304"></picture></div></div>
-  <div class="kf" id="kf-praia"><div class="media"><video id="heroVid" muted playsinline preload="auto" poster="assets/hero-poster.jpg"><source id="heroSrcWebm" src="assets/hero-wan.webm" type="video/webm"><source id="heroSrcMp4" src="assets/hero-wan-web.mp4" type="video/mp4"></video></div></div>
+  <div class="kf" id="kf-praia"><div class="media"><video id="heroVid" muted playsinline preload="auto" poster="assets/hero-poster.jpg"><source id="heroSrcMp4" src="assets/hero-wan-web.mp4" type="video/mp4"></video></div></div>
   <div class="kf" id="kf-praiaimg"><div class="media"><picture><source media="(max-width:760px)" srcset="assets/praia_final-mobile.png"><img id="praiaImg" src="assets/praia_final.png" alt="Vision Inox no litoral"></picture></div></div>
   <div class="kf" id="kf-camp"><div class="media"><picture><source media="(max-width:760px)" srcset="assets/amb_camping-mobile.png"><img src="assets/amb_camping.png" alt="Vision Inox no camping"></picture></div></div>
   <div class="kf" id="kf-pisc"><div class="media"><picture><source media="(max-width:760px)" srcset="assets/amb_piscina-mobile.png"><img src="assets/amb_piscina.png" alt="Vision Inox na beira da piscina"></picture></div></div>
@@ -1369,10 +1400,10 @@ function applyAudio(pr){
   if(!sndOn)return;
   // M4: musica NAO zera no video — piso ~0.12 no fundo; volta a 0.50 nas cenas terrestres; assenta 0.34 nas secoes
   var mUp=0.78*(1-seg(pr,.47,.57));
-  var mb=Math.max(mUp,0.32)+seg(pr,.66,.72)*(0.50-0.32)+seg(pr,1.0,1.12)*(0.34-0.50);
+  var mb=Math.max(mUp,0.18)+seg(pr,.66,.72)*(0.50-0.18)+seg(pr,1.0,1.12)*(0.34-0.50);
   auMusic.volume=cl(mb,0,1);
   // M4: brasa (fogo+mar) entra na praia (.50-.60) e some nas terrestres (.62-.72), cruzando com a volta da musica
-  auEmber.volume=cl(0.62*seg(pr,.50,.60)*(1-seg(pr,.62,.72)),0,1);
+  auEmber.volume=cl(0.72*seg(pr,.50,.60)*(1-seg(pr,.62,.72)),0,1);
 }
 let tick=false;
 function onScroll(){if(!tick){requestAnimationFrame(function(){if(track){var r=track.getBoundingClientRect();var rng=r.height-window.innerHeight;var pr=(rng>0?-r.top/rng:0);lastPr=pr;update(cl(pr,0,1));applyAudio(pr);}tick=false});tick=true}}
@@ -1475,9 +1506,7 @@ onScroll();
 /* ═══ VIDEO MOBILE SWAP ═══ */
 (function(){
   if(window.innerWidth<760){
-    var sw=document.getElementById('heroSrcWebm');
     var sm=document.getElementById('heroSrcMp4');
-    if(sw)sw.setAttribute('src','assets/hero-wan-mobile.webm');
     if(sm)sm.setAttribute('src','assets/hero-wan-mobile.mp4');
     var v=document.getElementById('heroVid');
     if(v)v.load();
