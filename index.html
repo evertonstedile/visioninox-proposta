@@ -431,11 +431,111 @@ section.sec,section.manifesto,section.pos,section.evo,section.cw,section.pclose,
 .p-cortesia{font-size:12px;color:var(--dim);text-align:center;border-top:1px solid var(--line);padding-top:20px}
 .p-cortesia strong{color:var(--text)}
 
+/* ═══════════ ONDA 2 ═══════════ */
+
+/* ── BOTÃO CHAMA (formato de chama; preenche no hover; acende no clique) ── */
+.flame-btn{background:none;border:none;cursor:pointer;display:inline-flex;flex-direction:column;align-items:center;gap:16px;margin-top:54px;padding:8px;transition:transform .4s cubic-bezier(.2,.7,.2,1)}
+.flame-btn:hover{transform:translateY(-4px)}
+.flame-svg{width:78px;height:100px;display:block;overflow:visible}
+.flame-outer{fill:rgba(255,122,26,.06);stroke:var(--e2);stroke-width:2.4;transition:fill .55s ease,stroke .55s ease,filter .55s ease}
+.flame-inner{fill:transparent;transform-origin:center bottom;transition:fill .55s ease}
+.flame-btn:hover .flame-outer{fill:url(#flameGrad);stroke:rgba(255,176,46,.6)}
+.flame-btn:hover .flame-inner{fill:rgba(255,243,208,.55)}
+.flame-btn:hover .flame-svg{animation:flkr2 1.3s ease-in-out infinite alternate}
+@keyframes flkr2{0%{transform:scaleY(1) rotate(-1deg)}100%{transform:scaleY(1.05) translateY(-1px) rotate(1deg)}}
+.flame-btn.lit .flame-outer{fill:url(#flameGrad);stroke:transparent;filter:drop-shadow(0 0 34px rgba(255,90,20,.85))}
+.flame-btn.lit .flame-inner{fill:#fff6dc}
+.flame-label{font-family:var(--fs);font-size:12px;font-weight:800;letter-spacing:.26em;text-transform:uppercase;color:var(--e2);transition:color .4s}
+.flame-btn:hover .flame-label{color:var(--e3)}
+
+/* ── MODAL EM ABAS ── */
+.p-tabs{display:flex;gap:4px;border-bottom:1px solid var(--line);margin-bottom:30px}
+.p-tab{flex:1;background:none;border:none;border-bottom:2px solid transparent;color:var(--dim);font-family:var(--fs);font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:14px 8px;cursor:pointer;transition:color .3s,border-color .3s;margin-bottom:-1px}
+.p-tab:hover{color:var(--text-dim)}
+.p-tab.active{color:var(--e2);border-bottom-color:var(--e2)}
+.p-panel{display:none;animation:panelIn .45s cubic-bezier(.2,.7,.2,1)}
+.p-panel.active{display:block}
+@keyframes panelIn{0%{opacity:0;transform:translateY(12px)}100%{opacity:1;transform:none}}
+/* bônus (site) — destaque forte */
+.p-bonus{text-align:center;padding:8px 0}
+.p-bonus-tag{display:inline-block;font-family:var(--fs);font-size:10px;font-weight:800;letter-spacing:.28em;text-transform:uppercase;color:var(--e1);border:1px solid rgba(0,229,255,.3);border-radius:999px;padding:7px 16px;margin-bottom:24px}
+.p-bonus h3{font-family:var(--fd);font-size:clamp(24px,3.2vw,38px);font-weight:300;color:var(--text);line-height:1.15;letter-spacing:-.02em;margin-bottom:18px;max-width:20ch;margin-left:auto;margin-right:auto}
+.p-bonus h3 em{font-style:italic;color:var(--e2)}
+.p-bonus-price{display:flex;align-items:baseline;justify-content:center;gap:18px;margin:28px 0}
+.p-bonus-strike{font-family:var(--fd);font-size:34px;color:var(--faint);text-decoration:line-through;text-decoration-thickness:2px}
+.p-bonus-free{font-family:var(--fd);font-size:clamp(48px,7vw,76px);font-weight:300;color:var(--e1);letter-spacing:-.03em;line-height:1;text-shadow:0 0 40px rgba(0,229,255,.3)}
+.p-bonus-desc{font-size:14px;color:var(--dim);line-height:1.7;max-width:50ch;margin:0 auto 26px}
+.p-bonus-tags{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:520px;margin:0 auto}
+.p-bonus-tags span{font-family:var(--fs);font-size:11px;color:var(--text-dim);border:1px solid var(--line);border-radius:6px;padding:7px 13px}
+/* adicionais */
+.p-addons{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:560px){.p-addons{grid-template-columns:1fr}}
+.p-addon{display:flex;justify-content:space-between;align-items:center;border:1px solid var(--line);border-radius:8px;padding:18px 20px;transition:border-color .3s,background .3s}
+.p-addon:hover{border-color:var(--line-2);background:rgba(255,255,255,.02)}
+.p-addon-name{font-family:var(--fs);font-size:15px;color:var(--text);font-weight:600}
+.p-addon-price{font-family:var(--fd);font-size:22px;font-weight:400;color:var(--e2);white-space:nowrap}
+.p-addon-price small{font-size:.5em;color:var(--dim);font-weight:400}
+.p-combo{grid-column:1/-1;margin-top:6px;border:1px solid rgba(255,122,26,.4);background:rgba(255,69,0,.05);border-radius:10px;padding:22px 24px;text-align:center}
+.p-combo-lab{font-family:var(--fs);font-size:10px;font-weight:800;letter-spacing:.24em;text-transform:uppercase;color:var(--e2);margin-bottom:10px}
+.p-combo-price{font-family:var(--fd);font-size:clamp(26px,4vw,38px);font-weight:300;color:var(--text);letter-spacing:-.02em}
+.p-combo-price em{font-style:normal;color:var(--e2)}
+.p-combo-was{font-size:13px;color:var(--faint);margin-top:6px}
+.p-addon-note{grid-column:1/-1;font-size:12px;color:var(--dim);text-align:center;margin-top:8px;line-height:1.6}
+
+/* ── DADOS COMO GRÁFICO ASCENDENTE (barras scroll-driven) ── */
+.stat{position:relative}
+.stat .v{position:relative;z-index:1}
+.stat-bar{position:relative;height:4px;border-radius:3px;background:rgba(255,255,255,.07);margin-top:18px;overflow:hidden}
+.stat-bar i{position:absolute;inset:0;border-radius:3px;background:linear-gradient(90deg,var(--e1),var(--e2) 70%);transform:scaleX(0);transform-origin:left}
+.stat.in .stat-bar i{transition:transform 1.4s cubic-bezier(.2,.7,.2,1) .2s;transform:scaleX(var(--fill,1))}
+@supports(animation-timeline:view()){
+  .stat-bar i{animation:barGrow linear both;animation-timeline:view();animation-range:entry 12% cover 35%;transition:none}
+  @keyframes barGrow{0%{transform:scaleX(0)}100%{transform:scaleX(var(--fill,1))}}
+}
+.cgrid{display:flex;flex-direction:column;gap:18px;margin-top:36px}
+.crow{display:grid;grid-template-columns:1fr;gap:8px}
+.crow-top{display:flex;justify-content:space-between;align-items:baseline}
+.crow-val{font-family:var(--fd);font-size:clamp(22px,3vw,32px);font-weight:400;color:var(--e2);letter-spacing:-.01em}
+.crow-lab{font-family:var(--fs);font-size:13px;color:var(--text-dim);max-width:60%;text-align:right}
+.crow-track{height:8px;border-radius:5px;background:rgba(255,255,255,.06);overflow:hidden}
+.crow-track i{display:block;height:100%;border-radius:5px;background:linear-gradient(90deg,var(--e1),var(--e2) 75%);transform:scaleX(0);transform-origin:left}
+.crow.in .crow-track i{transition:transform 1.5s cubic-bezier(.2,.7,.2,1) .15s;transform:scaleX(var(--fill,1))}
+@supports(animation-timeline:view()){
+  .crow-track i{animation:barGrow linear both;animation-timeline:view();animation-range:entry 14% cover 42%;transition:none}
+}
+
+/* ── DOR × VISION (muito mais peso) ── */
+.diff-clash{margin-top:48px}
+.diff-vs{display:grid;grid-template-columns:1fr auto 1fr;gap:0;align-items:stretch;border-radius:18px;overflow:hidden;border:1px solid var(--line)}
+@media(max-width:760px){.diff-vs{grid-template-columns:1fr}}
+.diff-side{padding:44px 38px}
+.diff-pain-x{background:linear-gradient(180deg,rgba(120,40,30,.10),rgba(20,20,24,.4))}
+.diff-sol-x{background:linear-gradient(180deg,rgba(255,69,0,.10),rgba(255,69,0,.02))}
+.diff-mid{display:flex;align-items:center;justify-content:center;padding:0 4px;background:var(--line);position:relative}
+@media(max-width:760px){.diff-mid{padding:16px 0}}
+.diff-mid span{font-family:var(--fd);font-style:italic;font-size:20px;color:var(--dim);background:var(--bg-2);padding:10px 4px;border-radius:999px}
+.diff-x-tag{font-family:var(--fs);font-size:11px;font-weight:800;letter-spacing:.22em;text-transform:uppercase;margin-bottom:20px;display:flex;align-items:center;gap:10px}
+.diff-pain-x .diff-x-tag{color:var(--s3)}
+.diff-sol-x .diff-x-tag{color:var(--e2)}
+.diff-x-tag::before{content:'';width:8px;height:8px;border-radius:50%;background:currentColor}
+.diff-sol-x .diff-x-tag::before{box-shadow:0 0 12px var(--eg)}
+.diff-x-quote{font-family:var(--fd);font-size:clamp(26px,3.6vw,40px);font-weight:300;line-height:1.15;letter-spacing:-.02em;margin-bottom:18px}
+.diff-pain-x .diff-x-quote{color:var(--s2)}
+.diff-sol-x .diff-x-quote{color:var(--text)}
+.diff-sol-x .diff-x-quote em{font-style:italic;color:var(--e2)}
+.diff-x-body{font-size:15px;color:var(--dim);line-height:1.7}
+.diff-x-body strong{color:var(--text);font-weight:600}
+
+/* ── PALAVRAS DE ANTECIPAÇÃO (entre cenas lifestyle) ── */
+.antic{position:fixed;left:0;right:0;top:50%;transform:translateY(-50%);text-align:center;z-index:8;pointer-events:none;opacity:0}
+.antic span{font-family:var(--fd);font-weight:300;font-size:clamp(48px,11vw,150px);letter-spacing:.04em;color:var(--text);text-transform:uppercase;text-shadow:0 4px 60px rgba(0,0,0,.6)}
+
 </style>
 </head>
 <body>
 <div id="pbar"></div>
 <div id="ember-door"><h3>Você sentiu.<br><em>Agora entenda.</em></h3></div>
+<div id="antic"><span></span></div>
 
 <!-- HERO scrollytelling -->
 <div id="intro">
@@ -495,8 +595,8 @@ section.sec,section.manifesto,section.pos,section.evo,section.cw,section.pclose,
       <p class="lead rv d2">A Vision Inox fabrica para gigantes da indústria. Domina o aço, o corte a laser e a engenharia num nível que pouquíssimos alcançam. O problema nunca foi capacidade técnica — é que <em class="f">nada disso chega ao consumidor final hoje.</em></p>
     </div>
     <div class="stats" data-px="18">
-      <div class="stat rv d1"><div class="v">20<span class="u">+</span></div><div class="k">anos de domínio técnico em desenvolvimento de produto em inox</div></div>
-      <div class="stat rv d2"><div class="v">0</div><div class="k">presença digital institucional à altura do que a empresa realmente é</div></div>
+      <div class="stat rv d1" style="--fill:.82"><div class="v">20<span class="u">+</span></div><div class="k">anos de domínio técnico em desenvolvimento de produto em inox</div><div class="stat-bar"><i></i></div></div>
+      <div class="stat rv d2" style="--fill:.04"><div class="v">0</div><div class="k">presença digital institucional à altura do que a empresa realmente é</div><div class="stat-bar"><i></i></div></div>
       <div class="stat rv d3 climax"><div class="v">R$<span data-count="10" data-suffix="M+" data-delay="950">0</span></div><div class="k">gerados em e-commerce pela consultoria que conduz este projeto</div><div class="ignite"></div></div>
     </div>
   </div>
@@ -518,19 +618,10 @@ section.sec,section.manifesto,section.pos,section.evo,section.cw,section.pclose,
       <span class="kicker rv">A oportunidade</span>
       <h2 class="rv">Os dados que justificam <em>a aposta.</em></h2>
     </div>
-    <div class="stats" style="margin-top:52px">
-      <div class="stat rv">
-        <div class="v ember-text" data-count="6" data-suffix=",36 bi" data-prefix="USD ">0</div>
-        <div class="l">Mercado global de churrasqueiras em 2026 — crescendo a 5,06% ao ano</div>
-      </div>
-      <div class="stat rv d1">
-        <div class="v ember-text" data-count="62" data-suffix="%">0</div>
-        <div class="l">dos brasileiros fazem churrasco como ocasião frequente</div>
-      </div>
-      <div class="stat rv d2">
-        <div class="v ember-text" data-count="50" data-suffix="M+">0</div>
-        <div class="l">consumidores em cidades litorâneas — sem uma resposta premium de verdade</div>
-      </div>
+    <div class="cgrid" style="margin-top:52px">
+      <div class="crow rv" style="--fill:.80"><div class="crow-top"><span class="crow-val">USD 6,36 bi</span><span class="crow-lab">Mercado global de churrasqueiras em 2026 — crescendo 5%/ano</span></div><div class="crow-track"><i></i></div></div>
+      <div class="crow rv" style="--fill:.62"><div class="crow-top"><span class="crow-val">62%</span><span class="crow-lab">dos brasileiros fazem churrasco com frequência</span></div><div class="crow-track"><i></i></div></div>
+      <div class="crow rv" style="--fill:.70"><div class="crow-top"><span class="crow-val">50M+</span><span class="crow-lab">em cidades litorâneas — sem resposta premium de verdade</span></div><div class="crow-track"><i></i></div></div>
     </div>
 
     <div class="pesq-tramontina rv" style="margin-top:64px">
@@ -559,9 +650,9 @@ section.sec,section.manifesto,section.pos,section.evo,section.cw,section.pclose,
       <h2 class="rv d1">Uma cultura nacional. <span class="steel-grad">Uma dor real. Pouca marca de verdade.</span></h2>
     </div>
     <div class="stats">
-      <div class="stat rv d1"><div class="v">R$<span class="u">78–300</span></div><div class="k">âncora mental do marketplace para churrasqueira portátil de inox. É a brecha exata para uma marca premium</div></div>
-      <div class="stat rv d2"><div class="v">100<span class="u">%</span></div><div class="k">do litoral brasileiro convive com maresia e ferrugem. Inox 304 resolve uma dor real que a concorrência ignora</div></div>
-      <div class="stat rv d3"><div class="v">3</div><div class="k">reclamações se repetem em todos os concorrentes: empena no calor, enferruja, borda cortante. Três aberturas de diferenciação</div></div>
+      <div class="stat rv d1" style="--fill:.22"><div class="v">R$<span class="u">78–300</span></div><div class="k">âncora mental do marketplace para churrasqueira portátil de inox. É a brecha exata para uma marca premium</div><div class="stat-bar"><i></i></div></div>
+      <div class="stat rv d2" style="--fill:1"><div class="v">100<span class="u">%</span></div><div class="k">do litoral brasileiro convive com maresia e ferrugem. Inox 304 resolve uma dor real que a concorrência ignora</div><div class="stat-bar"><i></i></div></div>
+      <div class="stat rv d3" style="--fill:.6"><div class="v">3</div><div class="k">reclamações se repetem em todos os concorrentes: empena no calor, enferruja, borda cortante. Três aberturas de diferenciação</div><div class="stat-bar"><i></i></div></div>
     </div>
     <div class="callout rv d2"><p>O mercado está cheio de quem <strong>vende produto.</strong> Está vazio de quem <strong>constrói marca.</strong></p></div>
   </div>
@@ -576,7 +667,21 @@ section.sec,section.manifesto,section.pos,section.evo,section.cw,section.pclose,
       <p class="lead rv d2">Dores reais e documentadas dos produtos que dominam o mercado — e o que a Vision pode fazer diferente, usando exatamente a engenharia que já domina.</p>
     </div>
     <div class="diff-row rv"><div class="diff-pain"><div class="diff-tag"><span class="dot2"></span>A dor do mercado</div><h3>"Empena com o calor"</h3><p>A reclamação nº 1 das portáteis: a chapa fina <span class="hl">deforma na primeira brasa forte</span> e nunca mais fecha direito.</p><div class="quote-strip">"Boa, mas deforma com o calor." — review recorrente</div></div><div class="diff-sol"><div class="diff-tag"><span class="dot2"></span>O que a Vision faz</div><h3>Engenharia anti-empeno</h3><p>Espessura calculada + <span class="hl">nervuras estruturais feitas na própria dobra</span>. Resultado vira argumento: <span class="hl">"não empena, garantido."</span></p></div></div>
-    <div class="diff-row rv"><div class="diff-pain"><div class="diff-tag"><span class="dot2"></span>A dor do mercado</div><h3>"Enferruja perto do mar"</h3><p>Boa parte usa inox 430 ou aço galvanizado. <span class="hl">No litoral, mancha e enferruja em meses.</span></p></div><div class="diff-sol"><div class="diff-tag"><span class="dot2"></span>O que a Vision faz</div><h3>Inox 304, território litoral</h3><p>O 304 resiste à maresia de verdade. Isso vira <span class="hl">posicionamento de marca</span>: a churrasqueira feita para quem vive a brasa perto do mar.</p></div></div>
+    <div class="diff-clash rv">
+      <div class="diff-vs">
+        <div class="diff-side diff-pain-x">
+          <div class="diff-x-tag">A dor do mercado</div>
+          <div class="diff-x-quote">"Enferruja perto do mar."</div>
+          <p class="diff-x-body">Boa parte do mercado usa inox 430 ou aço galvanizado. No litoral, <strong>mancha e enferruja em meses</strong>. O cliente compra duas vezes — e culpa a categoria inteira.</p>
+        </div>
+        <div class="diff-mid"><span>vs</span></div>
+        <div class="diff-side diff-sol-x">
+          <div class="diff-x-tag">O que a Vision faz</div>
+          <div class="diff-x-quote">Inox 304, <em>território litoral.</em></div>
+          <p class="diff-x-body">O 304 resiste à maresia de verdade. Deixa de ser ficha técnica e vira <strong>posicionamento de marca</strong>: a churrasqueira feita para quem vive a brasa perto do mar.</p>
+        </div>
+      </div>
+    </div>
     <div class="diff-row rv"><div class="diff-pain"><div class="diff-tag"><span class="dot2"></span>A dor do mercado</div><h3>"O acabamento corta a mão"</h3><p>Rebarba, borda viva, encaixe que arranha. <span class="hl">Sensação de produto inacabado</span> — o oposto de premium.</p></div><div class="diff-sol"><div class="diff-tag"><span class="dot2"></span>O que a Vision faz</div><h3>Acabamento de padrão industrial</h3><p>Corte a laser de precisão, borda tratada, <span class="hl">escovado uniforme</span>. O toque comunica R$ 800 antes de qualquer texto.</p></div></div>
     <div class="diff-row rv"><div class="diff-pain"><div class="diff-tag"><span class="dot2"></span>A dor do mercado</div><h3>"Brasa sem controle"</h3><p>Grelha de altura fixa = ou queima, ou não assa. Frustração que aparece em review depois da compra.</p></div><div class="diff-sol"><div class="diff-tag"><span class="dot2"></span>O que a Vision faz</div><h3>Grelha ajustável 3 níveis</h3><p>Diferencial funcional <span class="hl">desejável</span>, não enfeite. Controle da brasa justifica preço e melhora a experiência.</p></div></div>
     <div class="diff-row rv"><div class="diff-pain"><div class="diff-tag"><span class="dot2"></span>A dor do mercado</div><h3>"Parece do AliExpress"</h3><p>Chega numa caixa marrom genérica. <span class="hl">Nada na unboxing diz premium</span> — cliente não indica, não posta.</p></div><div class="diff-sol"><div class="diff-tag"><span class="dot2"></span>O que a Vision faz</div><h3>Flat-pack + embalagem-presente</h3><p>Design dobrável <span class="hl">corta frete e vira experiência</span>: embalagem premium, montagem satisfatória, produto que rende foto.</p></div></div>
@@ -1233,12 +1338,19 @@ section.sec,section.manifesto,section.pos,section.evo,section.cw,section.pclose,
     <span class="kicker rv">Investimento</span>
     <h2 class="rv" style="margin-top:16px">O próximo passo<br><em>tem número.</em></h2>
     <p class="rv d1" style="color:var(--dim);font-size:16px;line-height:1.7;max-width:46ch;margin:22px auto 0">Cada componente foi construído para alinhar interesses — quando você cresce, eu cresço junto.</p>
-    <button class="flame-btn rv d2" id="flameBtn" onclick="document.getElementById('pricingModal').classList.add('open')">
-      <svg class="flame-icon" viewBox="0 0 22 26" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <path d="M11 2 C11 2 15 7 15 12 C15 15 13 17 11 18 C11 18 9 15 9 12 C9 7 11 2 11 2Z" fill="#ff7a1a"/>
-        <path d="M11 9 C11 9 14 12 14 15 C14 17 12.5 18.5 11 19 C11 19 9.5 17 9.5 15 C9.5 12 11 9 11 9Z" fill="#ffb02e" opacity=".8"/>
+    <button class="flame-btn rv d2" id="flameBtn">
+      <svg class="flame-svg" viewBox="0 0 100 130" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <defs>
+          <linearGradient id="flameGrad" x1="0" y1="1" x2="0" y2="0">
+            <stop offset="0%" stop-color="#ff4500"/>
+            <stop offset="55%" stop-color="#ff7a1a"/>
+            <stop offset="100%" stop-color="#ffb02e"/>
+          </linearGradient>
+        </defs>
+        <path class="flame-outer" d="M50 6 C50 28 66 40 70 60 C73 76 67 90 71 106 C61 122 39 122 29 106 C33 90 27 76 30 60 C34 40 50 28 50 6 Z"/>
+        <path class="flame-inner" d="M50 56 C50 68 58 74 60 86 C61 96 55 108 50 112 C45 108 39 96 40 86 C42 74 50 68 50 56 Z"/>
       </svg>
-      Revelar proposta de investimento
+      <span class="flame-label">Revelar a proposta</span>
     </button>
   </div>
 </section>
@@ -1248,50 +1360,71 @@ section.sec,section.manifesto,section.pos,section.evo,section.cw,section.pclose,
   <div class="p-modal-inner">
     <button class="p-modal-close" onclick="document.getElementById('pricingModal').classList.remove('open')" aria-label="Fechar">✕</button>
     <div class="p-modal-kk">Proposta de investimento · Vision Inox × Everton Stedile</div>
-    <div class="p-modal-title">Três componentes.<br>Uma parceria.</div>
-    <div class="p-cards">
-      <div class="p-card">
-        <div class="p-card-idx">01 — Construção</div>
-        <div class="p-card-name">Implantação</div>
-        <div class="p-card-tag">Estruturar a operação do zero</div>
-        <div class="p-card-value">R$ 38.000</div>
-        <div class="p-card-per">em marcos · 60–90 dias</div>
+    <div class="p-modal-title">Uma parceria,<br>desenhada para alinhar.</div>
+    <div class="p-tabs">
+      <button class="p-tab active" data-tab="invest">Investimento</button>
+      <button class="p-tab" data-tab="bonus">Bônus</button>
+      <button class="p-tab" data-tab="addons">Adicionais</button>
+    </div>
+
+    <div class="p-panel active" data-panel="invest">
+      <div class="p-cards">
+        <div class="p-card">
+          <div class="p-card-idx">01 — Construção</div>
+          <div class="p-card-name">Implantação</div>
+          <div class="p-card-tag">Estruturar a operação do zero</div>
+          <div class="p-card-value">R$ 38.000</div>
+          <div class="p-card-per">em marcos · 60–90 dias</div>
+        </div>
+        <div class="p-card p-card-mid">
+          <div class="p-card-idx">02 — Continuidade</div>
+          <div class="p-card-name">Execução</div>
+          <div class="p-card-tag">Manter a máquina girando</div>
+          <div class="p-card-value">R$ 7.500<span style="font-size:.55em;opacity:.7">/mês</span></div>
+          <div class="p-card-per">mínimo 6 meses</div>
+        </div>
+        <div class="p-card">
+          <div class="p-card-idx">03 — Alinhamento</div>
+          <div class="p-card-name">Performance</div>
+          <div class="p-card-tag">Crescer juntos</div>
+          <div class="p-card-value">0 → 7<span style="font-size:.6em">%</span></div>
+          <div class="p-card-per">marginal · escalonado</div>
+        </div>
       </div>
-      <div class="p-card p-card-mid">
-        <div class="p-card-idx">02 — Continuidade</div>
-        <div class="p-card-name">Execução</div>
-        <div class="p-card-tag">Manter a máquina girando</div>
-        <div class="p-card-value">R$ 7.500<span style="font-size:.55em;opacity:.7">/mês</span></div>
-        <div class="p-card-per">mínimo 6 meses</div>
+      <div class="p-tiers">
+        <div class="p-tier p-tier-zero"><span class="p-tier-pct">0%</span><span class="p-tier-range">até R$ 50k/mês — fase de validação, zero pressão sobre o resultado inicial</span></div>
+        <div class="p-tier"><span class="p-tier-pct">3%</span><span class="p-tier-range">sobre a faixa R$ 50k–150k/mês</span></div>
+        <div class="p-tier"><span class="p-tier-pct">5%</span><span class="p-tier-range">sobre a faixa R$ 150k–350k/mês</span></div>
+        <div class="p-tier"><span class="p-tier-pct">7%</span><span class="p-tier-range">acima de R$ 350k/mês</span></div>
       </div>
-      <div class="p-card">
-        <div class="p-card-idx">03 — Alinhamento</div>
-        <div class="p-card-name">Performance</div>
-        <div class="p-card-tag">Crescer juntos</div>
-        <div class="p-card-value">0 → 7<span style="font-size:.6em">%</span></div>
-        <div class="p-card-per">marginal · escalonado</div>
+      <p class="p-carencia">Carência de 3 meses a partir do go-live · base: faturamento líquido da loja gerenciada</p>
+    </div>
+
+    <div class="p-panel" data-panel="bonus">
+      <div class="p-bonus">
+        <span class="p-bonus-tag">Cortesia estratégica</span>
+        <h3>O site institucional da Vision — <em>por conta da casa.</em></h3>
+        <div class="p-bonus-price"><span class="p-bonus-strike">R$ 15.000</span><span class="p-bonus-free">R$ 0</span></div>
+        <p class="p-bonus-desc">A frente premium se sustenta na autoridade da empresa-mãe. Por isso, dentro da Implantação, a Vision ganha um site institucional premium — solidez, capacidade técnica e confiança para quem pesquisar a empresa.</p>
+        <div class="p-bonus-tags"><span>Home de alto impacto</span><span>Diferenciais técnicos</span><span>Segmentos atendidos</span><span>Estrutura & know-how</span><span>Motion & scroll</span><span>Responsivo</span></div>
+        <p class="p-addon-note" style="margin-top:24px">Escopo fechado: página única premium · uma rodada de revisão · entregue após a assinatura e o 1º pagamento. Blog, painel e produção audiovisual própria são orçados à parte.</p>
       </div>
     </div>
-    <div class="p-tiers">
-      <div class="p-tier p-tier-zero">
-        <span class="p-tier-pct">0%</span>
-        <span class="p-tier-range">até R$ 50k/mês — fase de validação, zero pressão sobre resultado inicial</span>
-      </div>
-      <div class="p-tier">
-        <span class="p-tier-pct">3%</span>
-        <span class="p-tier-range">sobre a faixa R$ 50k–150k/mês</span>
-      </div>
-      <div class="p-tier">
-        <span class="p-tier-pct">5%</span>
-        <span class="p-tier-range">sobre a faixa R$ 150k–350k/mês</span>
-      </div>
-      <div class="p-tier">
-        <span class="p-tier-pct">7%</span>
-        <span class="p-tier-range">acima de R$ 350k/mês</span>
+
+    <div class="p-panel" data-panel="addons">
+      <div class="p-addons">
+        <div class="p-addon"><span class="p-addon-name">Social Media</span><span class="p-addon-price">R$ 4.000<small>/mês</small></span></div>
+        <div class="p-addon"><span class="p-addon-name">Design Recorrente</span><span class="p-addon-price">R$ 3.000<small>/mês</small></span></div>
+        <div class="p-addon"><span class="p-addon-name">Edição de Vídeo</span><span class="p-addon-price">R$ 3.500<small>/mês</small></span></div>
+        <div class="p-addon"><span class="p-addon-name">Criativos UGC</span><span class="p-addon-price">R$ 4.000<small>/mês</small></span></div>
+        <div class="p-combo">
+          <div class="p-combo-lab">Combo Conteúdo Premium</div>
+          <div class="p-combo-price">os quatro juntos por <em>R$ 12.500</em>/mês</div>
+          <div class="p-combo-was">em vez de R$ 14.500 avulso</div>
+        </div>
+        <p class="p-addon-note">Mãos na massa de produção — o retainer cobre a <strong style="color:var(--text-dim)">direção</strong>, estes módulos entregam o <strong style="color:var(--text-dim)">volume de execução</strong>. Ativáveis por fase.</p>
       </div>
     </div>
-    <p class="p-carencia">Carência de 3 meses a partir do go-live · Base: faturamento líquido da loja gerenciada</p>
-    <p class="p-cortesia"><strong>Site institucional Vision Inox</strong> incluído no escopo de implantação · valor de mercado R$ 15.000 · custo zero nesta parceria.</p>
   </div>
 </div>
 
@@ -1526,6 +1659,48 @@ onScroll();
     }
   }
   window.addEventListener('scroll',checkDoor,{passive:true});
+})();
+
+/* ═══ MODAL: abas + chama que acende ao clicar ═══ */
+(function(){
+  var fb=document.getElementById('flameBtn'),modal=document.getElementById('pricingModal');
+  if(fb&&modal){
+    fb.addEventListener('click',function(){
+      fb.classList.add('lit');
+      setTimeout(function(){modal.classList.add('open');},420);
+    });
+  }
+  document.querySelectorAll('.p-tab').forEach(function(t){
+    t.addEventListener('click',function(){
+      document.querySelectorAll('.p-tab').forEach(function(x){x.classList.remove('active');});
+      document.querySelectorAll('.p-panel').forEach(function(x){x.classList.remove('active');});
+      t.classList.add('active');
+      var p=document.querySelector('.p-panel[data-panel="'+t.getAttribute('data-tab')+'"]');
+      if(p)p.classList.add('active');
+    });
+  });
+})();
+
+/* ═══ PALAVRAS DE ANTECIPAÇÃO (entre cenas lifestyle; lógica separada, não toca o scrubbing) ═══ */
+(function(){
+  var el=document.getElementById('antic');if(!el)return;
+  var w=el.querySelector('span');
+  var marks=[[.628,.662,'Mato'],[.714,.744,'Quintal'],[.797,.826,'Serra'],[.879,.908,'Estrada']];
+  var raf=false;
+  function upd(){
+    raf=false;
+    var p=lastPr,cur=null,prog=0;
+    for(var i=0;i<marks.length;i++){
+      if(p>=marks[i][0]&&p<marks[i][1]){cur=marks[i][2];prog=(p-marks[i][0])/(marks[i][1]-marks[i][0]);break;}
+    }
+    if(cur){
+      if(w.textContent!==cur)w.textContent=cur;
+      var o=Math.sin(prog*Math.PI);
+      el.style.opacity=o.toFixed(3);
+      w.style.transform='translateY('+((1-o)*24).toFixed(1)+'px)';
+    }else if(el.style.opacity!=='0'){el.style.opacity='0';}
+  }
+  window.addEventListener('scroll',function(){if(!raf){raf=true;requestAnimationFrame(upd);}},{passive:true});
 })();
 </script>
 </body>
