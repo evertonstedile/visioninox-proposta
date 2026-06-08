@@ -430,7 +430,7 @@ section.sec,section.manifesto,section.pos,section.evo,section.cw,section.pclose,
   <div class="kf" id="kf-denc"><div class="media"><picture><source media="(max-width:760px)" srcset="assets/det_encaixe-mobile.png"><img src="assets/det_encaixe.png" alt="Encaixe a laser"></picture></div></div>
   <div class="kf" id="kf-dgre"><div class="media"><picture><source media="(max-width:760px)" srcset="assets/det_grelha-mobile.png"><img src="assets/det_grelha.png" alt="Grelha em inox 304"></picture></div></div>
   <div class="kf" id="kf-inox"><div class="media"><picture><source media="(max-width:760px)" srcset="assets/inox_hero-mobile.png"><img src="assets/inox_hero.png" alt="Vision Inox — produto em inox 304"></picture></div></div>
-  <div class="kf" id="kf-praia"><div class="media"><video id="heroVid" muted playsinline preload="auto" poster="assets/hero-poster.jpg"><source src="assets/hero-wan.webm" type="video/webm"><source src="assets/hero-wan-web.mp4" type="video/mp4"></video></div></div>
+  <div class="kf" id="kf-praia"><div class="media"><video id="heroVid" muted playsinline preload="auto" poster="assets/hero-poster.jpg"><source id="heroSrcWebm" src="assets/hero-wan.webm" type="video/webm"><source id="heroSrcMp4" src="assets/hero-wan-web.mp4" type="video/mp4"></video></div></div>
   <div class="kf" id="kf-praiaimg"><div class="media"><picture><source media="(max-width:760px)" srcset="assets/praia_final-mobile.png"><img id="praiaImg" src="assets/praia_final.png" alt="Vision Inox no litoral"></picture></div></div>
   <div class="kf" id="kf-camp"><div class="media"><picture><source media="(max-width:760px)" srcset="assets/amb_camping-mobile.png"><img src="assets/amb_camping.png" alt="Vision Inox no camping"></picture></div></div>
   <div class="kf" id="kf-pisc"><div class="media"><picture><source media="(max-width:760px)" srcset="assets/amb_piscina-mobile.png"><img src="assets/amb_piscina.png" alt="Vision Inox na beira da piscina"></picture></div></div>
@@ -1472,7 +1472,17 @@ document.addEventListener('DOMContentLoaded',()=>{
 window.addEventListener('scroll',onScroll,{passive:true});
 onScroll();
 
-/* ═══ INTERSTICIAL EMBER ═══ */
+/* ═══ VIDEO MOBILE SWAP ═══ */
+(function(){
+  if(window.innerWidth<760){
+    var sw=document.getElementById('heroSrcWebm');
+    var sm=document.getElementById('heroSrcMp4');
+    if(sw)sw.setAttribute('src','assets/hero-wan-mobile.webm');
+    if(sm)sm.setAttribute('src','assets/hero-wan-mobile.mp4');
+    var v=document.getElementById('heroVid');
+    if(v)v.load();
+  }
+})();
 (function(){
   var door=document.getElementById('ember-door');
   if(!door)return;
