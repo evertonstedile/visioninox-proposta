@@ -513,10 +513,6 @@ section.sec,section.manifesto,section.pos,section.evo,section.cw,section.pclose,
 .stat-bar{position:relative;height:4px;border-radius:3px;background:rgba(255,255,255,.07);margin-top:18px;overflow:hidden}
 .stat-bar i{position:absolute;inset:0;border-radius:3px;background:linear-gradient(90deg,var(--e1),var(--e2) 70%);transform:scaleX(0);transform-origin:left}
 .stat.in .stat-bar i{transition:transform 1.4s cubic-bezier(.2,.7,.2,1) .2s;transform:scaleX(var(--fill,1))}
-@supports(animation-timeline:--disabled-xyz()){
-  .stat-bar i{animation:barGrow linear both;animation-timeline:view();animation-range:entry 12% cover 35%;transition:none}
-  @keyframes barGrow{0%{transform:scaleX(0)}100%{transform:scaleX(var(--fill,1))}}
-}
 .cgrid{display:flex;flex-direction:column;gap:18px;margin-top:36px}
 .crow{display:grid;grid-template-columns:1fr;gap:8px}
 .crow-top{display:flex;justify-content:space-between;align-items:baseline}
@@ -525,9 +521,6 @@ section.sec,section.manifesto,section.pos,section.evo,section.cw,section.pclose,
 .crow-track{height:8px;border-radius:5px;background:rgba(255,255,255,.06);overflow:hidden}
 .crow-track i{display:block;height:100%;border-radius:5px;background:linear-gradient(90deg,var(--e1),var(--e2) 75%);transform:scaleX(0);transform-origin:left}
 .crow.in .crow-track i{transition:transform 1.5s cubic-bezier(.2,.7,.2,1) .15s;transform:scaleX(var(--fill,1))}
-@supports(animation-timeline:--disabled-xyz()){
-  .crow-track i{animation:barGrow linear both;animation-timeline:view();animation-range:entry 14% cover 42%;transition:none}
-}
 
 /* ── DOR × VISION (muito mais peso) ── */
 .diff-clash{margin-top:48px}
@@ -557,8 +550,8 @@ section.sec,section.manifesto,section.pos,section.evo,section.cw,section.pclose,
 .diff-x-body strong{color:var(--text);font-weight:600}
 
 /* ── PALAVRAS DE ANTECIPAÇÃO (entre cenas lifestyle) ── */
-#antic{position:fixed;left:0;right:0;top:50%;transform:translateY(-50%);text-align:center;z-index:24;pointer-events:none;opacity:0}
-#antic span{display:inline-block;font-family:var(--fd);font-weight:300;font-size:clamp(48px,11vw,150px);letter-spacing:.04em;color:var(--text);text-transform:uppercase;text-shadow:0 4px 60px rgba(0,0,0,.75)}
+#antic{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;z-index:24;pointer-events:none;opacity:0;background:radial-gradient(ellipse 100% 100% at 50% 50%,rgba(9,9,9,.80),rgba(9,9,9,.93))}
+#antic span{display:inline-block;font-family:var(--fd);font-weight:300;font-size:clamp(46px,10vw,140px);letter-spacing:.05em;color:var(--text);text-transform:uppercase;text-shadow:0 6px 70px rgba(0,0,0,.55)}
 
 </style>
 </head>
@@ -697,7 +690,6 @@ section.sec,section.manifesto,section.pos,section.evo,section.cw,section.pclose,
       <h2 class="rv d1">Onde agrego no <em class="f" style="color:var(--e2)">desenvolvimento</em>, não só no anúncio.</h2>
       <p class="lead rv d2">Dores reais e documentadas dos produtos que dominam o mercado — e o que a Vision pode fazer diferente, usando exatamente a engenharia que já domina.</p>
     </div>
-    <div class="diff-row rv"><div class="diff-pain"><div class="diff-tag"><span class="dot2"></span>A dor do mercado</div><h3>"Empena com o calor"</h3><p>A reclamação nº 1 das portáteis: a chapa fina <span class="hl">deforma na primeira brasa forte</span> e nunca mais fecha direito.</p><div class="quote-strip">"Boa, mas deforma com o calor." — review recorrente</div></div><div class="diff-sol"><div class="diff-tag"><span class="dot2"></span>O que a Vision faz</div><h3>Engenharia anti-empeno</h3><p>Espessura calculada + <span class="hl">nervuras estruturais feitas na própria dobra</span>. Resultado vira argumento: <span class="hl">"não empena, garantido."</span></p></div></div>
     <div class="diff-clash rv">
       <div class="diff-vs">
         <div class="diff-side diff-pain-x">
@@ -714,6 +706,7 @@ section.sec,section.manifesto,section.pos,section.evo,section.cw,section.pclose,
         </div>
       </div>
     </div>
+    <div class="diff-row rv"><div class="diff-pain"><div class="diff-tag"><span class="dot2"></span>A dor do mercado</div><h3>"Empena com o calor"</h3><p>A reclamação nº 1 das portáteis: a chapa fina <span class="hl">deforma na primeira brasa forte</span> e nunca mais fecha direito.</p><div class="quote-strip">"Boa, mas deforma com o calor." — review recorrente</div></div><div class="diff-sol"><div class="diff-tag"><span class="dot2"></span>O que a Vision faz</div><h3>Engenharia anti-empeno</h3><p>Espessura calculada + <span class="hl">nervuras estruturais feitas na própria dobra</span>. Resultado vira argumento: <span class="hl">"não empena, garantido."</span></p></div></div>
     <div class="diff-row rv"><div class="diff-pain"><div class="diff-tag"><span class="dot2"></span>A dor do mercado</div><h3>"O acabamento corta a mão"</h3><p>Rebarba, borda viva, encaixe que arranha. <span class="hl">Sensação de produto inacabado</span> — o oposto de premium.</p></div><div class="diff-sol"><div class="diff-tag"><span class="dot2"></span>O que a Vision faz</div><h3>Acabamento de padrão industrial</h3><p>Corte a laser de precisão, borda tratada, <span class="hl">escovado uniforme</span>. O toque comunica R$ 800 antes de qualquer texto.</p></div></div>
     <div class="diff-row rv"><div class="diff-pain"><div class="diff-tag"><span class="dot2"></span>A dor do mercado</div><h3>"Brasa sem controle"</h3><p>Grelha de altura fixa = ou queima, ou não assa. Frustração que aparece em review depois da compra.</p></div><div class="diff-sol"><div class="diff-tag"><span class="dot2"></span>O que a Vision faz</div><h3>Grelha ajustável 3 níveis</h3><p>Diferencial funcional <span class="hl">desejável</span>, não enfeite. Controle da brasa justifica preço e melhora a experiência.</p></div></div>
     <div class="diff-row rv"><div class="diff-pain"><div class="diff-tag"><span class="dot2"></span>A dor do mercado</div><h3>"Parece do AliExpress"</h3><p>Chega numa caixa marrom genérica. <span class="hl">Nada na unboxing diz premium</span> — cliente não indica, não posta.</p></div><div class="diff-sol"><div class="diff-tag"><span class="dot2"></span>O que a Vision faz</div><h3>Flat-pack + embalagem-presente</h3><p>Design dobrável <span class="hl">corta frete e vira experiência</span>: embalagem premium, montagem satisfatória, produto que rende foto.</p></div></div>
@@ -1510,7 +1503,7 @@ const scue=C('scue'),dots=[...document.querySelectorAll('#dots .dot')];
 const auMusic=C('auMusic'),auEmber=C('auEmber'),sndBtn=C('sndBtn');
 const intro=C('intro'),introBtn=C('introBtn'),introSkip=C('introSkip');
 let vdur=0,curPh=-1,lastPr=0,sndOn=false,SCROLL_READY=false;
-const MS=114; // musica inicia em 1:54
+const MS=0; // musica inicia do zero (decisao do Everton)
 const seg=(p,a,b)=>ez(cl((p-a)/(b-a),0,1));
 const frz=t=>{t=cl(t,0,1);return t<.30?t/.30*.5:t>.70?.5+(t-.70)/.30*.5:.5;};
 const W=.020; // meia-largura do crossfade alinhado
@@ -1574,10 +1567,13 @@ function applyAudio(pr){
   var mUp=0.78*(1-seg(pr,.47,.57));
   var mb=Math.max(mUp,0.18)+seg(pr,.66,.72)*(0.50-0.18)+seg(pr,1.0,1.12)*(0.34-0.50);
   auMusic.volume=cl(mb,0,1);
-  // M4: brasa (fogo+mar) entra na praia (.50-.60) e some nas terrestres (.62-.72), cruzando com a volta da musica
-  var emb=0.72*seg(pr,.50,.60)*(1-seg(pr,.62,.72));
+  // M4: brasa SO no momento do video/praia (.50-.68) e PAUSA fora — nao vaza no resto da apresentacao
+  var emb=0.72*seg(pr,.50,.58)*(1-seg(pr,.60,.68));
   if(innerWidth<760)emb*=0.5;
-  auEmber.volume=cl(emb,0,1);
+  emb=cl(emb,0,1);
+  if(emb<0.02){if(!auEmber.paused)auEmber.pause();}
+  else if(auEmber.paused){var _ep=auEmber.play();if(_ep&&_ep.catch)_ep.catch(function(){});}
+  auEmber.volume=emb;
 }
 let tick=false;
 function onScroll(){if(!tick){requestAnimationFrame(function(){if(track){var r=track.getBoundingClientRect();var rng=r.height-window.innerHeight;var pr=(rng>0?-r.top/rng:0);lastPr=pr;update(cl(pr,0,1));applyAudio(pr);}tick=false});tick=true}}
@@ -1688,17 +1684,22 @@ onScroll();
   function frame(){
     var d=target-current;
     if(Math.abs(d)<0.5){current=target;window.scrollTo(0,Math.round(current));running=false;return;}
-    current+=d*0.115;
+    current+=d*0.16;
     window.scrollTo(0,Math.round(current));
     requestAnimationFrame(frame);
   }
   function kick(){if(!running){running=true;current=window.scrollY;requestAnimationFrame(frame);}}
   addEventListener('wheel',function(e){
     if(!SCROLL_READY||e.ctrlKey)return;
+    // touchpad (pixel + delta pequeno) = scroll NATIVO (ja e fluido). smooth so na roda do mouse.
+    if(e.deltaMode===0&&Math.abs(e.deltaY)<50)return;
     e.preventDefault();
     if(!running)target=window.scrollY;
     var d=e.deltaY; if(e.deltaMode===1)d*=16; else if(e.deltaMode===2)d*=innerHeight;
     target=Math.max(0,Math.min(target+d,maxY()));
+    var cap=innerHeight*1.6; // anti-disparo: nunca passa varias secoes de uma vez
+    if(target-current>cap)target=current+cap;
+    if(current-target>cap)target=current-cap;
     kick();
   },{passive:false});
   addEventListener('scroll',function(){if(!running){target=current=window.scrollY;}},{passive:true});
@@ -1718,18 +1719,40 @@ if('scrollRestoration' in history)history.scrollRestoration='manual';
   var wasPlaying=false;
   document.addEventListener('visibilitychange',function(){
     if(document.hidden){wasPlaying=sndOn;auMusic.pause();auEmber.pause();}
-    else if(wasPlaying&&sndOn){var a=auMusic.play(),e=auEmber.play();if(a&&a.catch)a.catch(function(){});if(e&&e.catch)e.catch(function(){});}
+    else if(wasPlaying&&sndOn){var a=auMusic.play();if(a&&a.catch)a.catch(function(){});applyAudio(lastPr);}
   });
   addEventListener('pagehide',function(){auMusic.pause();auEmber.pause();});
   addEventListener('pageshow',function(ev){
     if(ev.persisted){
-      sndOn=false;auMusic.pause();auEmber.pause();try{auMusic.currentTime=MS;}catch(e){}
+      wasPlaying=false;sndOn=false;
+      auMusic.pause();auEmber.pause();try{auMusic.currentTime=0;auEmber.currentTime=0;}catch(e){}
       SCROLL_READY=false;window.scrollTo(0,0);
       if(intro){intro.style.display='';intro.classList.remove('gone');lockScroll();}
       if(sndBtn){sndBtn.classList.remove('on');sndBtn.style.display='none';}
       var _dr=C('darkrise');if(_dr)_dr.classList.remove('gone');
     }
   });
+})();
+
+/* ═══ GRÁFICOS SCRUBBED — barras crescem conforme a seção sobe (ligadas ao scroll) ═══ */
+(function(){
+  var bars=[].slice.call(document.querySelectorAll('.stat-bar i,.crow-track i'));
+  if(!bars.length)return;
+  var raf=0;
+  function upd(){
+    raf=0;var vh=innerHeight;
+    for(var k=0;k<bars.length;k++){
+      var b=bars[k],row=b.closest('.stat')||b.closest('.crow')||b.parentElement;
+      var r=row.getBoundingClientRect();
+      var fill=parseFloat(getComputedStyle(row).getPropertyValue('--fill'))||1;
+      var p=cl((vh*0.86-r.top)/(vh*0.42),0,1);
+      b.style.transition='none';
+      b.style.transform='scaleX('+(p*fill).toFixed(3)+')';
+    }
+  }
+  addEventListener('scroll',function(){if(!raf)raf=requestAnimationFrame(upd);},{passive:true});
+  addEventListener('resize',function(){if(!raf)raf=requestAnimationFrame(upd);},{passive:true});
+  upd();
 })();
 
 /* ═══ VIDEO MOBILE SWAP ═══ */
