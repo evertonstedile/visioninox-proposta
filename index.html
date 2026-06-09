@@ -1558,7 +1558,6 @@ const intro=C('intro'),introBtn=C('introBtn'),introSkip=C('introSkip');
 let vdur=0,curPh=-1,lastPr=0,sndOn=false,SCROLL_READY=false;
 const MS=0; // musica inicia do zero (decisao do Everton)
 const seg=(p,a,b)=>ez(cl((p-a)/(b-a),0,1));
-const frz=t=>{t=cl(t,0,1);return t<.30?t/.30*.5:t>.70?.5+(t-.70)/.30*.5:.5;};
 const W=.020; // meia-largura do crossfade alinhado
 // cenas genericas: [id, inicio, fim, fadeIn, fadeOut, zoom]
 const SC=[
@@ -1587,8 +1586,8 @@ function update(p){
     if(s.fout)o*=(1-seg(p,s.b-W,s.b+W));
     op(s.el,o);
     var sc,ZA=(window.innerWidth<760?0.45:1.12);
-    if(s.z==='in')sc=1+frz(seg(p,s.a,s.b))*ZA;
-    else if(s.z==='out')sc=(1+ZA)-frz(seg(p,s.a,s.b))*ZA;
+    if(s.z==='in')sc=1+seg(p,s.a,s.b)*ZA;
+    else if(s.z==='out')sc=(1+ZA)-seg(p,s.a,s.b)*ZA;
     else sc=1.045-seg(p,s.a,s.b)*0.045;
     if(s.img)s.img.style.transform='scale('+sc.toFixed(3)+')';
   }
